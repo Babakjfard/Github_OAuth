@@ -10,6 +10,8 @@ import os
 import sys
 import traceback
 
+GITHUB_CLIENT_ID = Env
+
 # Step 2: checking if the key variables are defined. They act as keys that need be 
 # defined for the OAuth communication between this webapp and Github to work correctly. 
 class GithubOAuthVarsNotDefined(Exception):
@@ -39,6 +41,7 @@ oauth = OAuth(app)
 # Step 4: define the service to which delegating the login to (Github)
 # OAuth requires certain URLs so that it knows where to send the user to be able
 # to enter their account information.
+# Babak : change scope to public_repo
 github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'],
