@@ -108,7 +108,7 @@ def authorized():
         session['github_token'] = (resp['access_token'], '')
         session['user_data']=github.get('user').data
         github_userid = session['user_data']['login']
-        org_name = os.getenv('GITHUB_ORG')
+        #org_name = os.getenv('GITHUB_ORG')
     except Exception as e:
         session.clear()
         message = 'Unable to login: ' + str(type(e)) + str(e)
@@ -118,21 +118,21 @@ def authorized():
     #Babak will delete it!!
     try:
         g = Github(resp['access_token'])
-        org = g.get_organization(org_name)
+        #org = g.get_organization(org_name)
         named_user = g.get_user(github_userid)
-        isMember = org.has_in_members(named_user)
+        #isMember = org.has_in_members(named_user)
     except Exception as e:
         message = 'Unable to connect to Github with accessToken: ' + resp['access_token'] + " exception info: " + str(type(e)) + str(e)
         session.clear()
         flash(message,'error')
         return redirect(url_for('home'))
     
-    if not isMember:
-        session.clear() # Must clear session before adding flash message
-        message = 'Unable to login: ' + github_userid + ' is not a member of ' + org_name + \
-          '</p><p><a href="https://github.com/logout" target="_blank">Logout of github as user:  ' + github_userid + \
-          '</a></p>' 
-        flash(Markup(message),'error')
+    #if not isMember:
+    #    session.clear() # Must clear session before adding flash message
+    #    message = 'Unable to login: ' + github_userid + ' is not a member of ' + org_name + \
+    #      '</p><p><a href="https://github.com/logout" target="_blank">Logout of github as user:  ' + github_userid + \
+    #      '</a></p>' 
+    #    flash(Markup(message),'error')
 
     else:
         flash('You were successfully logged in')
