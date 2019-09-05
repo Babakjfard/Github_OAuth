@@ -153,7 +153,10 @@ def renderPage2():
     return render_template('page2.html')
 
 if __name__ == "__main__":
-    app.run()
+    # A workaround after facing at=error code=H10 on Heroku. Because the port is dynamically set in Heroku
+    port = int(os.environ.get("PORT", 5000))
+
+    app.run(host='0.0.0.0', port=port)
 
 
 
