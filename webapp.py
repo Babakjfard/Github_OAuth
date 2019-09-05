@@ -48,7 +48,7 @@ github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'],
     consumer_secret=os.environ['GITHUB_CLIENT_SECRET'],
-    request_token_params={'scope': 'read:org'},
+    request_token_params={'scope': 'user:email'},
     base_url='https://api.github.com/',
     request_token_url=None,
     access_token_method='POST',
@@ -67,10 +67,10 @@ def get_github_oauth_token():
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))
 
-#Babak : delete later
-@app.context_processor
-def inject_github_org():
-    return dict(github_org=os.getenv('GITHUB_ORG'))
+##Babak : delete later
+#@app.context_processor
+#def inject_github_org():
+#    return dict(github_org=os.getenv('GITHUB_ORG'))
 
 
 # Step 7: rendering the webpages. login() and logout(), use our OAuth object to 
@@ -81,7 +81,7 @@ def home():
 
 @app.route('/login')
 def login():
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
+    return github.authorize()
 
 @app.route('/logout')
 def logout():
