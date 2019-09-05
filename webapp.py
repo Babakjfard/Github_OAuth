@@ -19,8 +19,7 @@ class GithubOAuthVarsNotDefined(Exception):
 
 if os.getenv('GITHUB_CLIENT_ID') == None or \
         os.getenv('GITHUB_CLIENT_SECRET') == None or \
-        os.getenv('APP_SECRET_KEY') == None or \
-        os.getenv('GITHUB_ORG') == None:
+        os.getenv('APP_SECRET_KEY') == None:
     raise GithubOAuthVarsNotDefined('''
       Please define environment variables:
          GITHUB_CLIENT_ID
