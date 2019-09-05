@@ -10,7 +10,7 @@ import os
 import sys
 import traceback
 
-GITHUB_CLIENT_ID = Env
+
 
 # Step 2: checking if the key variables are defined. They act as keys that need be 
 # defined for the OAuth communication between this webapp and Github to work correctly. 
