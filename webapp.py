@@ -173,10 +173,11 @@ def renderPage2():
 
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-	user = session['user_data']['login']
-	password = ''
-	# resp = github.authorized_response()
-    # accs_token = resp['access_token']
+	session['user_data']=github.get('user').data
+    user = session['user_data']['login']
+    password = ''
+	#resp = github.authorized_response()
+    #accs_token = resp['access_token']
     repo = request.form['repo']
 
 	#payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
