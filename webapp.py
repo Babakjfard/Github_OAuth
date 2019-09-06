@@ -187,7 +187,7 @@ def replicate():
 
     if login.status_code == 201:
         return jsonify({'success' : 'Repo is replicated', 'user' : user})
-	return jsonify({'error' : login.json()['message']})
+    return jsonify({'error' : login.json()['message']})
 
 
 if __name__ == "__main__":
