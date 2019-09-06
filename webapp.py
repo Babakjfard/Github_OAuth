@@ -9,6 +9,8 @@ import pprint
 import os
 import sys
 import traceback
+import requests
+import base64
 
 #List of files to replicate
 FILES = [
@@ -174,8 +176,8 @@ def replicate():
 	password = session.get('github_token')
 	repo = request.form['repo']
 
-	#payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
-	#login = requests.post('https://api.github.com/user/repos', auth=(user, password), data=json.dumps(payload))
+	payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
+	login = requests.post('https://api.github.com/user/repos', auth=(user, password), data=json.dumps(payload))
 
 	for file in FILES:
 		create_file(file, user, password, repo)
