@@ -139,7 +139,7 @@ def authorized():
     else:
         flash('You were successfully logged in')
 
-    return redirect(url_for('home'))
+    return redirect(url_for('logged_in'))
 
 # Step 9: Here is the part that starts the main job of the app after it has logged in
 # and given the appropriate access

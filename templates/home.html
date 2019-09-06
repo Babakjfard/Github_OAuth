@@ -1,16 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
 
-{% block content %}
-  <h1>Home</h1>
-  <ul>
-    <li><a href="/page1">That thing we do</a></li>
-    <li><a href="/page2">The other thing</a></li>
-  </ul>
-
-<p>This is a sample application to demonstrate authenticating against github oauth,
-using Flask, on Heroku.   This app restricts logins only to members of the 
-github organization: {{ github_org }} </p>
-
-{% endblock %} 
+{% block card-form %}
+<form class="form-signin" id="login">
+    <span style="font-size: 12px;">Login into your Github.</span>
+     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+  </form>
+{% endblock %}

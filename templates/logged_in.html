@@ -1,0 +1,10 @@
+{% extends layout.html %}
+
+{% block card-form %}
+<form class="form-signin">
+        <label for="replicateRepo" class="sr-only">Repository</label>
+        <input type="text" id="replicateRepo" class="form-control repo" placeholder="Repository" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Replicate</button>
+        <button action="logout" class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+</form>
+{% endblock %}

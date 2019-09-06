@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <link rel="stylesheet" href="">
-  <title>{% block title %}{% endblock %} - My Webpage</title>
+  <title>Self-replicating app</title>
+</head>
 
-
-  </head>
-  <body>
-    {% include 'navbar.html' %}
-
+<body>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Self-replicating app</h1>
+      <p class="lead">This application creates a repository with its own (application's) code on your <b>GitHub</b> account. All you need is to access your account via username, password, and name a new repository. You can find a source code <a href="https://github.com/Ostinchuk/self-replicating-github-repo">here</a>.</p>
+    </div>
+  
 
     <div id="content">
-    <!-- Serves as placeholder for flash_messages depending on the result from Github login -->
-    {% include 'flash_messages.html' %} 
+        <div class="container">
+            <div class="card-deck mb-4 text-center">
+              <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">
+                      {% if logged_in %}
+  
+                      <li><a class="navbar-brand" href="#">
+                          <img src="{{ session['user_data']['avatar_url'] }}&s=30" 
+                           width="30" height="30" style="display: inline-block;" ></a></li>
+                      <li><p class="navbar-text">{{ session['user_data']['name']}}</p></li>	
+                          <li><p class="navbar-text">Github userid: {{ session['user_data']['login']}}</li>
+                      {% else %}
+                      Replicate Repo
+                      {% endif %}
+                
+                  </h4>
+                </div>
+                <div class="card-body" id="card-replicate">
+                  {% block card-form %}{% endblock %}
+                  <!-- Serves as placeholder for flash_messages -->
+                  {% include 'flash_messages.html' %} 
+                 <div id="loader-replicate" class="loader-wrapper">
+                    <div class="loader replicate"></div>
+                  </div>
+                  <div id="response-replicate"></div>
+                </div>
+              </div>
+              </div>
+            </div>
+        
+    
+    
 
-  {% block content %}{% endblock %}</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
