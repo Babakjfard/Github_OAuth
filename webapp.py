@@ -184,9 +184,9 @@ def replicate():
             filename = f.read()
         filename = base64.b64encode(bytes(filename, 'utf-8'))
         repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
-		
-	if login.status_code == 201:
-		return jsonify({'success' : 'Repo is replicated', 'user' : user})
+
+    if login.status_code == 201:
+        return jsonify({'success' : 'Repo is replicated', 'user' : user})
 	return jsonify({'error' : login.json()['message']})
 
 
