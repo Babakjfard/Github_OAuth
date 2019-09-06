@@ -12,19 +12,8 @@ import traceback
 
 #List of files to replicate
 FILES = [
-	'app.py',
-	'.flaskenv',
-	'Procfile',
-	'wakeup.py',
-	'.gitattributes',
-	'README.md',
-	'installation.md',
-	'tech_specs.md',
-	'app/routes.py',
-	'app/__init__.py',
-	'app/static/css/style.css',
-	'app/static/js/script.js',
-	'app/templates/index.html'
+	'webapp.py',
+	'templates/home.html'
 ]
 
 
