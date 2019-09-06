@@ -173,13 +173,13 @@ def renderPage2():
 
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-	resp = github.authorized_response()
+    resp = github.authorized_response()
     g = Github(resp['access_token'])
     repo_name = request.form['repo']
     user = g.get_user()
-    repo = user.create_repo(repo_name)
-
-	for file in FILES:
+    repo = user.create_repo(repo_name)  
+	
+    for file in FILES:
         with open(file) as f:
             filename = f.read()
         filename = base64.b64encode(bytes(filename, 'utf-8'))
