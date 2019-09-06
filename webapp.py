@@ -10,6 +10,30 @@ import os
 import sys
 import traceback
 
+#List of files to replicate
+FILES = [
+	'app.py',
+	'.flaskenv',
+	'Procfile',
+	'wakeup.py',
+	'.gitattributes',
+	'README.md',
+	'installation.md',
+	'tech_specs.md',
+	'app/routes.py',
+	'app/__init__.py',
+	'app/static/css/style.css',
+	'app/static/js/script.js',
+	'app/templates/index.html'
+]
+
+
+def create_file(path, user, password, repo):
+	with open(path) as f:
+		filename = f.read()
+	filename = base64.b64encode(bytes(filename, 'utf-8'))
+	file = {'path': path, 'message':'add {}'.format(path), 'content': filename.decode("utf-8")}
+	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), auth=(user, password), data=json.dumps(file))
 
 
 # Step 2: checking if the key variables are defined. They act as keys that need be 
@@ -48,7 +72,7 @@ github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'],
     consumer_secret=os.environ['GITHUB_CLIENT_SECRET'],
-    request_token_params={'scope': 'user:email'},
+    request_token_params={'scope': 'public_repo'},
     base_url='https://api.github.com/',
     request_token_url=None,
     access_token_method='POST',
@@ -139,7 +163,7 @@ def authorized():
     else:
         flash('You were successfully logged in')
 
-    return redirect(url_for('home'))
+    return redirect(url_for('page2'))
 
 # Step 9: Here is the part that starts the main job of the app after it has logged in
 # and given the appropriate access
@@ -154,6 +178,23 @@ def renderPage1():
 @app.route('/page2')
 def renderPage2():
     return render_template('page2.html')
+
+@app.route('/replicate', methods=['POST'])
+def replicate():
+	user = session['user_data']['login']
+	password = session.get('github_token')
+	repo = request.form['repo']
+
+	payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
+	login = requests.post('https://api.github.com/user/repos', auth=(user, password), data=json.dumps(payload))
+
+	for file in FILES:
+		create_file(file, user, password, repo)
+
+	if login.status_code == 201:
+		return jsonify({'success' : 'Repo is replicated', 'user' : user})
+	return jsonify({'error' : login.json()['message']})
+
 
 if __name__ == "__main__":
     # A workaround after facing at=error code=H10 on Heroku. Because the port is dynamically set in Heroku
