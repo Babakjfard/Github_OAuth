@@ -25,7 +25,7 @@ def create_file(path, user, password, repo):
 		filename = f.read()
 	filename = base64.b64encode(bytes(filename, 'utf-8'))
 	file = {'path': path, 'message':'add {}'.format(path), 'content': filename.decode("utf-8")}
-	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), auth=(user, password), data=json.dumps(file))
+	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), data=json.dumps(file))
 
 
 # Step 2: checking if the key variables are defined. They act as keys that need be 
@@ -174,11 +174,14 @@ def renderPage2():
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
 	user = session['user_data']['login']
-	password = session.get('github_token')
-	repo = request.form['repo']
+    password = "just this"
+	# password = session.get('github_token')
+	# resp = github.authorized_response()
+    # accs_token = resp['access_token']
+    repo = request.form['repo']
 
-	payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
-	login = requests.post('https://api.github.com/user/repos', auth=(user, password), data=json.dumps(payload))
+	#payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
+	#login = requests.post('https://api.github.com/user/repos', auth=accs_token, data=json.dumps(payload))
 
 	for file in FILES:
 		create_file(file, user, password, repo)
