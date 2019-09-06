@@ -11,6 +11,7 @@ import sys
 import traceback
 import requests
 import base64
+import json
 
 #List of files to replicate
 FILES = [
