@@ -168,7 +168,7 @@ def renderPage1():
 def renderPage2():
     return render_template('page2.html')
 
-@app.route('/replicate', methods=['POST'])
+@app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
 	user = session['user_data']['login']
 	password = session.get('github_token')
