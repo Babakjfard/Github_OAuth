@@ -13,6 +13,8 @@ import requests
 import base64
 import json
 
+theToken = None
+
 #List of files to replicate
 FILES = [
 	'webapp.py',
@@ -75,6 +77,7 @@ github = oauth.remote_app(
 # Step 5: getting the token and secret 
 @github.tokengetter
 def get_github_oauth_token():
+    theToken = session.get('github_token')
     return session.get('github_token')
 
 
@@ -174,11 +177,11 @@ def renderPage2():
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
 
-    g = Github(session.get('github_token'))
+    g = Github(theToken)
     repo_name = request.form['repo']
     user = g.get_user()
     repo = user.create_repo(repo_name)  
-	
+
     for file in FILES:
         with open(file) as f:
             filename = f.read()
