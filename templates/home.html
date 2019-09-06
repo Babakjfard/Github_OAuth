@@ -7,25 +7,5 @@
 using Flask, on Heroku.   This app restricts logins only to members of the 
 github organization: {{ github_org }} </p>
 
-{% if logged_in %}
-<div class="card-body" id="card-replicate">
-  <form class="form-signin" id="replicate">
-    <span style="font-size: 12px;">Name your repo and let's copy this app there.</span>
-    <label for="replicateUsername" class="sr-only">Username</label>
-    <input type="text" id="replicateUsername" class="form-control username" placeholder="Username" required autofocus>
-    <label for="replicatePassword" class="sr-only">Password</label>
-    <input type="password" id="replicatePassword" class="form-control password" placeholder="Password" required>
-    <label for="replicateRepo" class="sr-only">Repository</label>
-    <input type="text" id="replicateRepo" class="form-control repo" placeholder="Repository" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Replicate</button>
-  </form>
-  <div id="loader-replicate" class="loader-wrapper">
-    <div class="loader replicate"></div>
-  </div>
-  <div id="response-replicate"></div>
-</div>
-
-
-{% endif %}
 
 {% endblock %} 
