@@ -174,7 +174,7 @@ def renderPage2():
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
 	user = session['user_data']['login']
-	password = session.get('github_token')
+	password = ''
 	# resp = github.authorized_response()
     # accs_token = resp['access_token']
     repo = request.form['repo']
