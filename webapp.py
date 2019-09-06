@@ -173,19 +173,18 @@ def renderPage2():
 
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-	session['user_data']=github.get('user').data
-    user = session['user_data']['login']
-    password = ''
-	#resp = github.authorized_response()
-    #accs_token = resp['access_token']
-    repo = request.form['repo']
-
-	#payload = {'name': repo, 'description': 'this is a self-replication app.', 'auto_init': False}
-	#login = requests.post('https://api.github.com/user/repos', auth=accs_token, data=json.dumps(payload))
+	resp = github.authorized_response()
+    g = Github(resp['access_token'])
+    repo_name = request.form['repo']
+    user = g.get_user()
+    repo = user.create_repo(repo_name)
 
 	for file in FILES:
-		create_file(file, user, password, repo)
-
+        with open(file) as f:
+            filename = f.read()
+        filename = base64.b64encode(bytes(filename, 'utf-8'))
+        repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
+		
 	if login.status_code == 201:
 		return jsonify({'success' : 'Repo is replicated', 'user' : user})
 	return jsonify({'error' : login.json()['message']})
