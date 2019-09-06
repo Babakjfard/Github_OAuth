@@ -173,8 +173,8 @@ def renderPage2():
 
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-    resp = github.authorized_response()
-    g = Github(resp['access_token'])
+
+    g = Github(get_github_oauth_token())
     repo_name = request.form['repo']
     user = g.get_user()
     repo = user.create_repo(repo_name)  
