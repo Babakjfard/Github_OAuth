@@ -176,6 +176,7 @@ def renderPage2():
 
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
+    print("Token just before replicating:", theToken)
 
     g = Github(theToken)
     repo_name = request.form['repo']
