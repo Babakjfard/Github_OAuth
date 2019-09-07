@@ -186,7 +186,7 @@ def replicate():
         #filename = base64.b64encode(bytes(filename, 'utf-8'))
         #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
-    #return jsonify({'success' : 'Repo is replicated', 'user' : user})
+    return redirect(url_for('home'))
 
 
 
