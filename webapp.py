@@ -52,7 +52,7 @@ if os.getenv('GITHUB_CLIENT_ID') == None or \
 
 # Step 3 : creating the app and setting the keys
 app = Flask(__name__)
-
+oauth = OAuth(app)
 app.debug = False
 
 app.secret_key = os.environ['APP_SECRET_KEY']
@@ -77,9 +77,8 @@ github = oauth.remote_app(
 # Step 5: getting the token and secret 
 @github.tokengetter
 def get_github_oauth_token():
-    theToken = session.get('github_token')
+    theToken = session.get('github_token')[0]
     return session.get('github_token')
-
 
 # Step 6: Giving values to the related login variables
 @app.context_processor
