@@ -13,8 +13,6 @@ import requests
 import base64
 import json
 
-theToken = None
-
 #List of files to replicate
 FILES = [
 	'webapp.py',
@@ -77,8 +75,6 @@ github = oauth.remote_app(
 # Step 5: getting the token and secret 
 @github.tokengetter
 def get_github_oauth_token():
-    theToken = session.get('github_token')[0]
-    print ("Token is:", theToken)
     return session.get('github_token')
 
 # Step 6: Giving values to the related login variables
@@ -190,9 +186,8 @@ def replicate():
         filename = base64.b64encode(bytes(filename, 'utf-8'))
         repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
 
-    if login.status_code == 201:
-        return jsonify({'success' : 'Repo is replicated', 'user' : user})
-    return jsonify({'error' : login.json()['message']})
+    return jsonify({'success' : 'Repo is replicated', 'user' : user})
+
 
 
 if __name__ == "__main__":
