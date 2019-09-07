@@ -78,6 +78,7 @@ github = oauth.remote_app(
 @github.tokengetter
 def get_github_oauth_token():
     theToken = session.get('github_token')[0]
+    print ("Token is:", theToken)
     return session.get('github_token')
 
 # Step 6: Giving values to the related login variables
