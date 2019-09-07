@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
 
+
 from github import Github
 
 import pprint
@@ -186,7 +187,9 @@ def replicate():
         #filename = base64.b64encode(bytes(filename, 'utf-8'))
         #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
-    return redirect(url_for('home'))
+    #return redirect(url_for('home'))
+    print(user)
+    return jsonify({'success' : 'Repo is replicated', 'user' : user})
 
 
 
