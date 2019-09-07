@@ -188,8 +188,8 @@ def replicate():
         #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
     #return redirect(url_for('home'))
-    print(user)
-    return jsonify({'success' : 'Repo is replicated', 'user' : user})
+    print(f'*********user: {session['user_data']['login']}')
+    return jsonify({'success' : 'Repo is replicated')
 
 
 
