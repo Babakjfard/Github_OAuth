@@ -92,11 +92,6 @@ def get_github_oauth_token():
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))
 
-##Babak : delete later
-#@app.context_processor
-#def inject_github_org():
-#    return dict(github_org=os.getenv('GITHUB_ORG'))
-
 
 # Step 7: rendering the webpages. login() and logout(), use our OAuth object to 
 # log in and authorize a user by first calling the url for the function authorized() 
@@ -153,13 +148,6 @@ def authorized():
         session.clear()
         flash(message,'error')
         return redirect(url_for('home'))
-    
-    #if not isMember:
-    #    session.clear() # Must clear session before adding flash message
-    #    message = 'Unable to login: ' + github_userid + ' is not a member of ' + org_name + \
-    #      '</p><p><a href="https://github.com/logout" target="_blank">Logout of github as user:  ' + github_userid + \
-    #      '</a></p>' 
-    #    flash(Markup(message),'error')
 
     else:
         flash('You were successfully logged in')
@@ -192,8 +180,6 @@ def replicate():
     for file in FILES:
         with open(file) as f:
             filename = f.read()
-        #filename = base64.b64encode(bytes(filename, 'utf-8'))
-        #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
     flash('The repo is created!')
     return redirect(url_for('home'))
