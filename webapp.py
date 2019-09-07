@@ -183,10 +183,10 @@ def replicate():
     for file in FILES:
         with open(file) as f:
             filename = f.read()
-        filename = base64.b64encode(bytes(filename, 'utf-8'))
-        repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
-
-    return jsonify({'success' : 'Repo is replicated', 'user' : user})
+        #filename = base64.b64encode(bytes(filename, 'utf-8'))
+        #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
+        repo.create_file(path=file, message='add {}'.format(file), content=filename)
+    #return jsonify({'success' : 'Repo is replicated', 'user' : user})
 
 
 
