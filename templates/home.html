@@ -3,9 +3,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<p>This is a sample application to demonstrate authenticating against github oauth,
-using Flask, on Heroku.   This app restricts logins only to members of the 
-github organization </p>
+<p>This application requests access to the user's GitHub profile and creates a 
+  repository with its own (application's) code. You can then learn more about it through its documentations
+in your github repository</p>
 
 {% if logged_in %}
 <div class="container">

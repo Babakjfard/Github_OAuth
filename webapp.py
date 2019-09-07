@@ -16,8 +16,17 @@ import json
 
 #List of files to replicate
 FILES = [
-	'webapp.py',
-	'templates/home.html'
+'Procfile',
+'README.md',
+'random_string.py',
+'requirements.txt',
+'static/style.css',
+'templates/flash_messages.html',
+'templates/home.html',
+'templates/layout.html',
+'templates/navbar.html',
+'webapp.py',
+'.gitignore'
 ]
 
 
@@ -174,7 +183,6 @@ def renderPage2():
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
     theToken = session.get('github_token')[0]
-    print("Token just before replicating:", theToken)
 
     g = Github(theToken)
     repo_name = request.form['repo']
@@ -187,9 +195,8 @@ def replicate():
         #filename = base64.b64encode(bytes(filename, 'utf-8'))
         #repo.create_file(path=file, message='add {}'.format(file), content=filename.decode("utf-8"))
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
-        flash('The repo is created!')
+    flash('The repo is created!')
     return redirect(url_for('home'))
-
 
 
 if __name__ == "__main__":
