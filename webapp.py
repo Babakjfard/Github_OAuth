@@ -26,9 +26,7 @@ FILES = [
 'templates/layout.html',
 'templates/navbar.html',
 'webapp.py',
-'.gitignore',
-'Technical_Specifications.pdf',
-'Installation_Document.pdf'
+'.gitignore'
 ]
 
 
