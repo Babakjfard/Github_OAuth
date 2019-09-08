@@ -120,7 +120,7 @@ the variables and the values for your app as in the following table.
 | _GITHUB\_CLIENT\_ID_       | _[from Github OAuth for your app]_  |
 | _GITHUB\_CLIENT\_SECRET_   | _[from Github OAuth for your app]_  |
 | _FLASK\_CONFIG_            |       production                    |
-| _SSL\_DISABLE_             |         Falsen                      |
+| _SSL\_DISABLE_             |         False                       |
 
 
 
