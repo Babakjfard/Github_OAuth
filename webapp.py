@@ -161,6 +161,7 @@ def replicate():
     for file in FILES:
         with open(file) as f:
             filename = f.read()
+        print("file --->", file)
         repo.create_file(path=file, message='add {}'.format(file), content=filename)
     flash('The repo is created!')
     return redirect(url_for('home'))
