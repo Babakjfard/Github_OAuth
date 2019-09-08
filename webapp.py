@@ -27,7 +27,8 @@ FILES = [
 'templates/navbar.html',
 'webapp.py',
 '.gitignore',
-'test.md'
+'Installation_Document.md',
+'Technical_Specifications.md'
 ]
 
 

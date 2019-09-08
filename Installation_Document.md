@@ -4,7 +4,7 @@ ReplOAuth – A self-replicating app
 Installation Document
 =====================
 
-This document explains the steps that are needed to take to create a
+This document explains the steps needed to take to create a
 working copy of this app on your heroku account.
 
 Step 1: Initial preparation of the development environment
@@ -35,7 +35,7 @@ already in place and working.
     instructions](https://devcenter.heroku.com/articles/heroku-cli) to
     install it on your system.
 
-Step 2: Make your app to work
+Step 2: Make your app working
 -----------------------------
 
 In this step you will follow the instruction to how to create a local
@@ -49,7 +49,7 @@ required keys and pushing the code into heroku.
 Use the following code in your desired place to get a copy off the app
 on your computer.
 
-\$ git clone https://github.com/*YOUR-USERNAME*/*YOUR-REPOSITORY*
+`\$ git clone https://github.com/*YOUR-USERNAME*/*YOUR-REPOSITORY*`
 
 Or you can follow the instructions
 [here](https://help.github.com/en/articles/cloning-a-repository).
@@ -63,12 +63,13 @@ starting, make sure to be in the root directory of your application in
 the command line, therefore the remote heroku repository will be
 automatically set as the repository for your app.
 
+```
 \$ heroku create *app\_name*
 
 \$ git remote -v
 
 \$ git push heroku master
-
+```
 First line above creates the remote empty repository on your heroku. The
 second line checks if the remote repository is created. the last line
 deploys the app on heroku.
@@ -111,16 +112,22 @@ the user.
 
 Then you open your heroku, open your app, click the *settings* tab on
 far right top, and then push the *Reveal Config Vars* button. Then set
-the variables and the values for your app as in the following figure.
+the variables and the values for your app as in the following table.
 
-![A screenshot of a cell phone Description automatically
-generated](media/image1.png){width="5.615437445319335in"
-height="2.9900984251968503in"}
+|       Key                  | Value                               | 
+| ---------------------------|:-----------------------------------:|
+| _APP\_SECRET\_KEY_         | _[use _random\_string.py_]_         |
+| _GITHUB\_CLIENT\_ID_       | _[from Github OAuth for your app]_  |
+| _GITHUB\_CLIENT\_SECRET_   | _[from Github OAuth for your app]_  |
+| _FLASK\_CONFIG_            |       production                    |
+| _SSL\_DISABLE_             |         Falsen                      |
 
-Use the same name for the variables as in the figure. The values for
-GITHUB\_CLIENT\_ID and GITHUB\_CLIENT\_SECRET are what you get from your
-git hub account. For creating the APP\_SECRET\_KEY you can run the short
-code random\_string.py provided in the root directory of your app to
+
+
+ The values for
+_GITHUB\_CLIENT\_ID_ and _GITHUB\_CLIENT\_SECRET_ are what you get from your
+git hub account. For creating the _APP\_SECRET\_KEY_ you can run the short
+code _random\_string.py_ provided in the root directory of your app to
 create a random string of the size you want, then copy and paste it as
 the value for this variable.
 
