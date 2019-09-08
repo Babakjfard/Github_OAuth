@@ -161,6 +161,7 @@ def replicate():
     #theToken = session.get('github_token')[0]
 
     #g = Github(theToken)
+    g = Github(resp['access_token'])
     repo_name = request.form['repo']
     user = g.get_user()
     repo = user.create_repo(repo_name)  
