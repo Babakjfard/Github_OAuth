@@ -156,23 +156,11 @@ def authorized():
 
 # Step 9: Here is the part that starts the main job of the app after it has logged in
 # and given the appropriate access
-@app.route('/page1')
-def renderPage1():
-    if 'user_data' in session:
-        user_data_pprint = pprint.pformat(session['user_data'])
-    else:
-        user_data_pprint = ''
-    return render_template('page1.html', dump_user_data=user_data_pprint)
-
-@app.route('/page2')
-def renderPage2():
-    return render_template('page2.html')
-
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-    theToken = session.get('github_token')[0]
+    #theToken = session.get('github_token')[0]
 
-    g = Github(theToken)
+    #g = Github(theToken)
     repo_name = request.form['repo']
     user = g.get_user()
     repo = user.create_repo(repo_name)  
