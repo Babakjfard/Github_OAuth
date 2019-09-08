@@ -1,3 +1,5 @@
+# This app is a self replicating repository using OAuth and Github API.
+# A major part of this code is taken from here https://pconrad-flask.github.io/topics/oauth_github/
 # Step 1: Importing libraries
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
