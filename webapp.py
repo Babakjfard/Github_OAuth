@@ -158,10 +158,9 @@ def authorized():
 # and given the appropriate access
 @app.route('/replicate', methods=['GET', 'POST'])
 def replicate():
-    #theToken = session.get('github_token')[0]
+    theToken = session.get('github_token')[0]
 
-    #g = Github(theToken)
-    g = Github(resp['access_token'])
+    g = Github(theToken)
     repo_name = request.form['repo']
     user = g.get_user()
     repo = user.create_repo(repo_name)  
