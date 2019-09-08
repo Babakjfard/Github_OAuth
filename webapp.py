@@ -30,12 +30,12 @@ FILES = [
 ]
 
 
-def create_file(path, user, password, repo):
-	with open(path) as f:
-		filename = f.read()
-	filename = base64.b64encode(bytes(filename, 'utf-8'))
-	file = {'path': path, 'message':'add {}'.format(path), 'content': filename.decode("utf-8")}
-	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), data=json.dumps(file))
+#def create_file(path, user, password, repo):
+#	with open(path) as f:
+#		filename = f.read()
+#	filename = base64.b64encode(bytes(filename, 'utf-8'))
+#	file = {'path': path, 'message':'add {}'.format(path), 'content': filename.decode("utf-8")}
+#	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), data=json.dumps(file))
 
 
 # Step 2: checking if the key variables are defined. They act as keys that need be 
