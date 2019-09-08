@@ -21,7 +21,7 @@ already in place and working.
     link](https://help.github.com/en/articles/set-up-git) explains the
     steps you will need to install git and authenticate it with github,
     therefore you can directly connect your local and remote
-    repositories.
+    repositories. Then you will need to clone your github repository to your local machine. follow [these instructions](https://help.github.com/en/articles/cloning-a-repository) for cloning.
 
 -   Sign up at Heroku and install Heroku CLI : Heroku is a platform as a
     service (PaaS) that enables developers to build, run, and operate
