@@ -4,3 +4,6 @@ This app replicates itself to the user's public space in Github in a repository 
 * [Installation document](Installation_Document.md) contains instructions on how to launch the application and get a working URL that replicates the repository.
 
 * [Technical specification](Technical_Specifications.md) document describing what the application does and how.
+
+----------------------------------------------------------------------
+_*Acknowledgment*_: This application has used a large part of its code and structure from [this repository](https://github.com/pconrad-flask/flask-github-oauth-example-01).
