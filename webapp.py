@@ -26,16 +26,11 @@ FILES = [
 'templates/layout.html',
 'templates/navbar.html',
 'webapp.py',
-'.gitignore'
+'.gitignore',
+'Technical_Specifications.pdf',
+'Installation_Document.pdf'
 ]
 
-
-#def create_file(path, user, password, repo):
-#	with open(path) as f:
-#		filename = f.read()
-#	filename = base64.b64encode(bytes(filename, 'utf-8'))
-#	file = {'path': path, 'message':'add {}'.format(path), 'content': filename.decode("utf-8")}
-#	add_file = requests.put('https://api.github.com/repos/{}/{}/contents/{}'.format(user, repo, path), data=json.dumps(file))
 
 
 # Step 2: checking if the key variables are defined. They act as keys that need be 
@@ -69,7 +64,6 @@ oauth = OAuth(app)
 # Step 4: define the service to which delegating the login to (Github)
 # OAuth requires certain URLs so that it knows where to send the user to be able
 # to enter their account information.
-# Babak : change scope to public_repo
 github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'],
@@ -137,7 +131,6 @@ def authorized():
         flash(message,'error')
         return redirect(url_for('home'))
     
-    #Babak will delete it!!
     try:
         g = Github(resp['access_token'])
         #org = g.get_organization(org_name)
@@ -174,9 +167,9 @@ def replicate():
 
 
 if __name__ == "__main__":
-    # A workaround after facing at=error code=H10 on Heroku. Because the port is dynamically set in Heroku
+    # A workaround after facing at=error code=H10 on Heroku. Because the port is
+    # dynamically set in Heroku
     port = int(os.environ.get("PORT", 5000))
-
     app.run(host='0.0.0.0', port=port)
 
 
